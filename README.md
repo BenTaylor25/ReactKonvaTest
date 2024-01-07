@@ -128,3 +128,59 @@ export default Canvas;
     border: 1px solid black;
 }
 ```
+
+## Make Rect dragabble
+
+```jsx
+// Canvas.jsx
+
+import { useState } from 'react';
+import { Stage, Layer, Rect } from 'react-konva';
+
+import './Canvas.css';
+
+function Canvas() {
+    // Property to hold the x and y position for use in the project.
+    const [rectXY, setRectXY] = useState({
+        x: 0,
+        y: 0
+    });
+
+    // Function to update the property values with the new position.
+    const handleRectChangePos = (event) => {
+        setRectXY({
+            x: event.target.x(),
+            y: event.target.y()
+        })
+    };
+
+    return (
+        <>
+            {/* Write coordinates to the screen. */}
+            <p>Coordinates: ({Math.round(rectXY.x)}, {Math.round(rectXY.y)})</p>
+            
+            <Stage id="canvas" width={window.innerWidth} height={window.innerHeight}>
+                <Layer>
+                    {/* `draggable` allows us to drag the rectangle around. */}
+                    {/*
+                        The rectXY property is not automatically updated
+                        so we need to call `handleRectChangePos()`.
+                    */}
+                    <Rect
+                        draggable
+                        onDragEnd={handleRectChangePos}
+                        {...rectXY}
+                        width={50}
+                        height={50}
+                        fill={'green'}
+                        />
+                </Layer>
+            </Stage>
+        </>
+    );
+}
+
+export default Canvas;
+
+```
+
