@@ -120,3 +120,11 @@ function Canvas() {
 
 export default Canvas;
 ```
+
+```css
+/* Canvas.css */
+
+#canvas {
+    border: 1px solid black;
+}
+```

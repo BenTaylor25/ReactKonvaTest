@@ -1,4 +1,4 @@
 
-div#canvas p {
-    color: blue;
+#canvas {
+    border: 1px solid black;
 }
